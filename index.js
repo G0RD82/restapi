@@ -6,11 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/user/:mojeid', (req, res) => {
-    const { mojeid } = req.params;
+app.get('/user/:id', (req, res) => {
+    const { id } = req.params;
     res.status(200).send({
        payload:{
-           mojeid:mojeid
+           id
        }
     });
 });
@@ -19,16 +19,17 @@ app.get('/article/:language/:title', (req, res) => {
     const { language, title } = req.params;
     res.status(200).send({
        payload:{
-           language, title
+           language,
+           title
        }
     });
 });
 
-app.get('/comment/:ixd222', (req, res) => {
-    const {  } = req.params;
+app.get('/comment/:article', (req, res) => {
+    const { article } = req.params;
     res.status(200).send({
        payload:{
-        
+        article
        }
     });
 });
@@ -38,7 +39,8 @@ app.post('/user', (req, res) => {
     res.status(201).send({
        
         payload:{
-            name, age
+            name,
+            age
         }
     });
 });
@@ -48,7 +50,8 @@ app.post('/article', (req, res) => {
     res.status(201).send({
       
         payload:{
-            title, category
+            title,
+            category
         }
     });
 });
@@ -67,22 +70,30 @@ app.put('/user', (req, res) => {
     const { name, age } = req.body;
     res.status(200).send({
       
-        payload
+        payload:{
+            name,
+            age
+        }
     });
 });
 
 app.patch('/user', (req, res) => {
-    const { payload } = req.body;
+    const { id,name } = req.body;
     res.status(200).send({
-    
+        payload:{
+            id,
+            name
+        }
     });
 });
 
-app.delete('/user', (req, res) => {
-    const { payload } = req.body;
+app.delete('/article', (req, res) => {
+    const { id } = req.body;
     res.status(200).send({
      
-        payload
+        payload:{
+            id
+        }
     });
 });
 
